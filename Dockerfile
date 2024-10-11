@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Defina o comando para iniciar a aplicação
-CMD ["node", "main.js"]
+CMD ["node", "dist/main.js"]
