@@ -1,5 +1,5 @@
 # Use uma imagem base oficial do Node.js
-FROM node:18
+FROM node:18-alpine
 
 # Defina o diretório de trabalho dentro do contêiner
 WORKDIR /usr/src/app
@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Instale as dependências da aplicação
-RUN npm install
+RUN npm install --production
 
 # Copie o restante dos arquivos da aplicação para o diretório de trabalho
 COPY . .

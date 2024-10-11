@@ -46,3 +46,6 @@ jobs:
 
       - name: Run docker container
         run: docker run -d -p 3000:3000 --name checkout eliasfernandescout/checkout
+
+      - name: Remove old docker images
+        run: docker image prune -f
