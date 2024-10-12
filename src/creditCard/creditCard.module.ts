@@ -9,6 +9,9 @@ import { CreditCardService } from './creditCard.service';
   imports: [
     MongooseModule.forFeature([{ name: 'CreditCard', schema: CreditCardSchema }]),
   ],
+  exports: [
+    MongooseModule.forFeature([{ name: 'CreditCard', schema: CreditCardSchema }])
+  ],
   controllers: [CreditCardController],
   providers: [CreditCardService],
 })

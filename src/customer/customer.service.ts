@@ -6,26 +6,24 @@ import { Customer } from './interface/customer.interface';
 
 @Injectable()
 export class CustomerService {
-  constructor(@InjectModel('Customer') private readonly customerModel: Model<Customer>) {}
+  constructor(
+    @InjectModel('Customer') private readonly customerModel: Model<Customer>,
+  ) {}
 
   async create(customer: CustomerInputDTO): Promise<Customer> {
     const createdCustomer = new this.customerModel(customer);
     return createdCustomer.save();
   }
 
-  async findByCpf(cpf: string): Promise<Customer[]> {
-    return this.customerModel.find({ cpf }).exec();
+  async findByName(name: string): Promise<Customer[]> {
+    return this.customerModel.find({ name }).exec();
+  }
+
+  async findByCpf(cpf: string): Promise<Customer> {
+    return this.customerModel.findOne({ cpf }).exec();
   }
 
   async findAll(): Promise<Customer[]> {
     return this.customerModel.find().exec();
-  }
-
-  async updateCreditCardsByCpf(cpf: string, creditCards: any[]): Promise<Customer> {
-    return this.customerModel.findOneAndUpdate(
-      { cpf },
-      { $set: { creditCards } },
-      { new: true }
-    ).exec();
   }
 }

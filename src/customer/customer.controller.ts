@@ -13,20 +13,12 @@ export class CustomerController {
   }
 
   @Get('cpf')
-  async findByName(@Query('cpf') cpf: string): Promise<Customer[]> {
+  async findByName(@Query('cpf') cpf: string): Promise<Customer> {
     return this.service.findByCpf(cpf);
   }
 
   @Get()
   async findAll(): Promise<Customer[]> {
     return this.service.findAll();
-  }
-
-  @Put('update-credit-cards')
-  async updateCreditCardsByCpf(
-    @Query('cpf') cpf: string,
-    @Body('creditCards') creditCards: any[]
-  ): Promise<Customer> {
-    return this.service.updateCreditCardsByCpf(cpf, creditCards);
   }
 }
