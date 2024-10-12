@@ -1,5 +1,6 @@
 export class CustomerInputDTO {
   readonly name: string;
-  readonly age: number;
   readonly email: string;
+  readonly endereco: string;
+  readonly cpf: string;
 }
