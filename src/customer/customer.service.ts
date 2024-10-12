@@ -13,13 +13,17 @@ export class CustomerService {
     return createdCustomer.save();
   }
 
-  async findByName(name: string): Promise<Customer[]> {
-    return this.customerModel.find({ name }).exec();
+  async findByCpf(cpf: string): Promise<Customer[]> {
+    return this.customerModel.find({ cpf }).exec();
   }
 
-  async updateCreditCardsByName(name: string, creditCards: any[]): Promise<Customer> {
+  async findAll(): Promise<Customer[]> {
+    return this.customerModel.find().exec();
+  }
+
+  async updateCreditCardsByCpf(cpf: string, creditCards: any[]): Promise<Customer> {
     return this.customerModel.findOneAndUpdate(
-      { name },
+      { cpf },
       { $set: { creditCards } },
       { new: true }
     ).exec();

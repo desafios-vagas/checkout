@@ -3,7 +3,6 @@ import { CustomerService } from './customer.service';
 import { CustomerInputDTO } from './dto/customer.input.dto';
 import { Customer } from './interface/customer.interface';
 
-
 @Controller('customers')
 export class CustomerController {
   constructor(private readonly service: CustomerService) {}
@@ -13,16 +12,21 @@ export class CustomerController {
     return this.service.create(customer);
   }
 
-  @Get('search')
-  async findByName(@Query('name') name: string): Promise<Customer[]> {
-    return this.service.findByName(name);
+  @Get('cpf')
+  async findByName(@Query('cpf') cpf: string): Promise<Customer[]> {
+    return this.service.findByCpf(cpf);
+  }
+
+  @Get()
+  async findAll(): Promise<Customer[]> {
+    return this.service.findAll();
   }
 
   @Put('update-credit-cards')
-  async updateCreditCardsByName(
-    @Query('name') name: string,
+  async updateCreditCardsByCpf(
+    @Query('cpf') cpf: string,
     @Body('creditCards') creditCards: any[]
   ): Promise<Customer> {
-    return this.service.updateCreditCardsByName(name, creditCards);
+    return this.service.updateCreditCardsByCpf(cpf, creditCards);
   }
 }
