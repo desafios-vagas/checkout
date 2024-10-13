@@ -9,4 +9,5 @@ export interface Order {
   preco: String;
   identificador: string;
   status_pedido: OrderStatus;
+  order_number: string;
 }

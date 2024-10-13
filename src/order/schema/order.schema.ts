@@ -14,4 +14,5 @@ export const OrderSchema = new Schema({
     enum: OrderStatus,
     default: OrderStatus.AGUARDANDO_PAGAMENTO,
   },
+  order_number: String,
 });
