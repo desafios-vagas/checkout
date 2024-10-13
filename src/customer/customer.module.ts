@@ -10,8 +10,11 @@ import { CreditCardModule } from 'src/creditCard/creditCard.module';
     MongooseModule.forFeature([{ name: 'Customer', schema: CustomerSchema }]),
     CreditCardModule
   ],
+  exports: [
+    MongooseModule.forFeature([{ name: 'Customer', schema: CustomerSchema }]),
+    CustomerService
+  ],
   controllers: [CustomerController],
   providers: [CustomerService],
-  exports: [CustomerService],
 })
 export class CustomerModule {}
