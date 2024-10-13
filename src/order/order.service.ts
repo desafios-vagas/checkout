@@ -43,8 +43,11 @@ export class OrderService {
       preco: product.preco,
       status_pedido: OrderStatus.AGUARDANDO_PAGAMENTO,
     });
-
-    this.kafkaProducerService.sendMessage(order);
+    
+    const orderToSend = order.toObject();
+    delete orderToSend._id;
+    
+    this.kafkaProducerService.sendMessage(orderToSend);
 
     return order.save();
   }
