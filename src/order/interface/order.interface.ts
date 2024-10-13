@@ -1,11 +1,11 @@
-import { Document } from 'mongoose';
+import { OrderStatus } from "../enum/order.status";
 
-export interface Order extends Document {
-  id?: string;
-  nome: string;
+
+export interface Order {
   cpf: string;
+  creditCardNumero: string;
+  nome: string;
   produto: string;
   identificador: string;
-  creditCardNumero: string;
-  status_pedido: 'AGUARDANDO_PAGAMENTO' | 'CONFIRMADO' | 'CANCELADO';
+  status_pedido: OrderStatus;
 }

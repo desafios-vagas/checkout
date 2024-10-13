@@ -6,6 +6,7 @@ import { OrderDTO } from './dto/order.dto';
 import { Customer } from '../customer/interface/customer.interface';
 import { Product } from '../product/interface/product.interface';
 import { CreditCard } from 'src/creditCard/interface/creditCard.interface';
+import { OrderStatus } from './enum/order.status';
 
 @Injectable()
 export class OrderService {
@@ -36,7 +37,8 @@ export class OrderService {
       ...orderDTO,
       creditCardNumero: creditCard.numero,
       nome: creditCard.nome,
-      produto: product.nome
+      produto: product.nome,
+      status_pedido: OrderStatus.AGUARDANDO_PAGAMENTO,
     });
 
     return order.save();

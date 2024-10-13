@@ -20,6 +20,7 @@ export class OrderDTO {
   @IsString()
   creditCardNumero: string;
 
+  @IsOptional()
   @IsEnum(['AGUARDANDO_PAGAMENTO', 'CONFIRMADO', 'CANCELADO'])
   status_pedido: 'AGUARDANDO_PAGAMENTO' | 'CONFIRMADO' | 'CANCELADO';
 }

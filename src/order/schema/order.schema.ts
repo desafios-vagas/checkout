@@ -1,10 +1,16 @@
 import { Schema } from 'mongoose';
+import { OrderStatus } from '../enum/order.status';
+
 
 export const OrderSchema = new Schema({
-  nome: { type: String, required: true },
-  cpf: { type: String, required: true },
-  produto: { type: String, required: true },
-  identificador: { type: String, required: true },
-  creditCardNumero: { type: String, required: true },
-  status_pedido: { type: String, enum: ['AGUARDANDO_PAGAMENTO', 'CONFIRMADO', 'CANCELADO'], required: true },
+  cpf: String,
+  creditCardNumero: String,
+  nome: String,
+  produto: String,
+  identificador: String,
+  status_pedido: {
+    type: String,
+    enum: OrderStatus,
+    default: OrderStatus.AGUARDANDO_PAGAMENTO,
+  },
 });
