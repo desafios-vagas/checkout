@@ -6,13 +6,15 @@ import { OrderController } from './order.controller';
 import { ProductModule } from '../product/product.module';
 import { CustomerModule } from 'src/customer/customer.module';
 import { CreditCardModule } from 'src/creditCard/creditCard.module';
+import { KafkaModule } from 'src/kafka/kafka.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'Order', schema: OrderSchema }]),
     ProductModule,
     CustomerModule,
-    CreditCardModule
+    CreditCardModule,
+    KafkaModule
   ],
   controllers: [OrderController],
   providers: [OrderService],

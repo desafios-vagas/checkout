@@ -7,10 +7,12 @@ import { Customer } from '../customer/interface/customer.interface';
 import { Product } from '../product/interface/product.interface';
 import { CreditCard } from 'src/creditCard/interface/creditCard.interface';
 import { OrderStatus } from './enum/order.status';
+import { KafkaProducerService } from 'src/kafka/kafka-producer.service';
 
 @Injectable()
 export class OrderService {
   constructor(
+    private readonly kafkaProducerService: KafkaProducerService,
     @InjectModel('Order') private readonly orderModel: Model<Order>,
     @InjectModel('Customer') private readonly customerModel: Model<Customer>,
     @InjectModel('Product') private readonly productModel: Model<Product>,
@@ -38,8 +40,11 @@ export class OrderService {
       creditCardNumero: creditCard.numero,
       nome: creditCard.nome,
       produto: product.nome,
+      preco: product.preco,
       status_pedido: OrderStatus.AGUARDANDO_PAGAMENTO,
     });
+
+    this.kafkaProducerService.sendMessage(order);
 
     return order.save();
   }

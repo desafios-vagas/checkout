@@ -7,6 +7,7 @@ export const OrderSchema = new Schema({
   creditCardNumero: String,
   nome: String,
   produto: String,
+  preco: String,
   identificador: String,
   status_pedido: {
     type: String,

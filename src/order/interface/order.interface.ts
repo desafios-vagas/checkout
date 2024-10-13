@@ -6,6 +6,7 @@ export interface Order {
   creditCardNumero: string;
   nome: string;
   produto: string;
+  preco: String;
   identificador: string;
   status_pedido: OrderStatus;
 }
