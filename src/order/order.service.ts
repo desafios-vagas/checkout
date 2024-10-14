@@ -60,34 +60,5 @@ export class OrderService {
   async findAll(): Promise<Order[]> {
     return this.orderModel.find().exec();
   }
-
-  async handleOrderCheckReply(message: string) {
-    const orderNumberMatch = message.match(/Order Number: (\d{8})/);
-    const statusCodeMatch = message.match(/Status Code: (\d+)/);
-
-    if (!orderNumberMatch || !statusCodeMatch) {
-      throw new Error('Order Number or Status Code not found in message');
-    }
-
-    const orderNumber = orderNumberMatch[1];
-    const statusCode = parseInt(statusCodeMatch[1], 10);
-
-    let newStatus;
-    if (statusCode === 333) {
-      newStatus = OrderStatus.CANCELADO;
-    } else if (statusCode === 222) {
-      newStatus = OrderStatus.CONFIRMADO;
-    } else {
-      throw new Error('Unhandled Status Code');
-    }
-
-    const order = await this.orderModel.findOne({ order_number: orderNumber }).exec();
-    if (!order) {
-      throw new Error('Order not found');
-    }
-
-    order.status_pedido = newStatus;
-    await order.save();
-  }
   
 }

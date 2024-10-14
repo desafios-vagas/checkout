@@ -4,7 +4,7 @@ import { OrderStatus } from '../enum/order.status';
 
 export const OrderSchema = new Schema({
   cpf: String,
-  creditCardNumero: String,
+  numeroCartao: String,
   nome: String,
   produto: String,
   preco: String,
